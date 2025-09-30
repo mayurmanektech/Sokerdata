@@ -1,0 +1,122 @@
+@use './variable';
+
+footer {
+    background: variable.$primary-color;    
+    padding: 117px 0 70px;
+    @media screen and (max-width: 767px) {
+        padding: 60px 0;
+    }
+    .footer-row {
+        row-gap: 80px;
+        @media screen and (max-width: 767px) {
+            text-align: center;
+            row-gap: 50px;
+        }
+    }
+    .company-info {
+        margin: 60px 0 40px;
+        color: variable.$light-gray-txt;
+        font-size: 18px;
+        line-height: 22px;
+        @media screen and (max-width: 767px) {
+            max-width: 500px;
+            margin: auto;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    }
+    h2 {
+        font-size: 30px;
+        line-height: 36px;
+        margin-bottom: 30px;
+        color: variable.$white;
+    }
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        li {
+            margin-bottom: 15px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            a {
+                &.nav-link {
+                    color: variable.$white;
+                    position: relative;
+                    display: inline-block;
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: -1px;
+                        height: 1px;
+                        width: 0;
+                        background: variable.$white;
+                        transition: width 0.3s ease;
+                    }
+                    &:hover {
+                        color: variable.$white;
+                        &:after {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+        &.contact-list {
+            li {
+                display: flex;
+                gap: 15px;
+                @media screen and (max-width: 767px) {
+                    justify-content: center;
+                }
+                p {
+                    color: variable.$white;
+                    position: relative;
+                    display: inline-block;
+                }
+                .icon {
+                    min-width: 24px;
+                }
+            }
+        }
+        &.social-list {
+            display: flex;
+            gap: 15px;
+            @media screen and (max-width: 767px) {
+                justify-content: center;
+            }
+            li {
+                margin-bottom: 0;
+                a {
+                    width: 34px;
+                    height: 34px;
+                    background: variable.$white;
+                    border-radius: 34px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.3s ease;
+                    &:hover {
+                        opacity: 0.7;
+                        &:after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .copyright-txt {
+        margin-top: 100px;
+        color: variable.$white;
+        font-size: 14px;
+        line-height: 16px;
+        @media screen and (max-width: 767px) {
+            text-align: center;
+            margin-top: 50px;
+        }
+    }
+}

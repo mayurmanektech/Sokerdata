@@ -1,0 +1,32 @@
+stages:
+  - install
+  - build
+  - deploy
+
+variables:
+  # Define your environment variables here for FTP credentials
+  FTP_SERVER: "$FTP_HOST"
+  FTP_USERNAME: "$FTP_USERNAME"
+  FTP_PASSWORD: "$FTP_PASSWORD"
+  FTP_TARGET_DIR: "/public_html/sokerdata/"  # or wherever you want to deploy
+  BUILD_DIR: "dist"  # directory where Vite will output the build
+
+install_dependencies:
+  stage: install
+  image: node:18 # Use the Node.js image (adjust based on your Node version)
+  script:
+    - npm install
+
+build_app:
+  stage: build
+  image: node:18 # Same as above
+  script:
+    - npm run build
+
+deploy_to_cpanel:
+  stage: deploy
+  image: lloydm/ftp-deploy:latest  # A Docker image for FTP deploy
+  script:
+    - npx ftp-deploy --server=$FTP_SERVER --username=$FTP_USERNAME --password=$FTP_PASSWORD --local=$CI_PROJECT_DIR/$BUILD_DIR/ --remote=$FTP_TARGET_DIR
+  only:
+    - development  # Specify branch where you want the pipeline to run

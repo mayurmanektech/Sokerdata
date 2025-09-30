@@ -1,0 +1,341 @@
+@use './variable';
+header {
+    position: fixed;
+    width: 100%;
+    top: 36px;
+    z-index: 999;
+    transition: all 0.3s ease;
+    &.fixed {
+        top: 0;
+        background: variable.$white;
+        box-shadow: 0 0 10px 0 #ccc;
+    }
+
+    .navbar {
+        padding: 10px;
+        background-color: variable.$white;
+
+        .navbar-brand {
+            padding: 0;
+
+            img {
+                width: 203px;
+            }
+        }
+
+        .navbar-nav {
+            align-items: center;
+
+            .nav-item {
+                padding: 0 30px;
+                position: relative;
+
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+
+                    &:after {
+                        display: none;
+                    }
+                }
+
+                &:after {
+                    position: absolute;
+                    content: "";
+                    right: 0;
+                    top: 0;
+                    height: 100%;
+                    width: 1px;
+                    background-color: #CCCCCC;
+                }
+
+                a {
+                    font-family: variable.$heading-fonts;
+                    color: #8F8F8F;
+                    font-size: 20px;
+                    line-height: 1.2;
+                    text-transform: uppercase;
+                    padding: 0;
+                    position: relative;
+
+                    &.active {
+                        color: variable.$black;
+
+                        &:after {
+                            position: absolute;
+                            content: "";
+                            height: 3px;
+                            background-color: variable.$secondary-color;
+                            bottom: -10px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            transition: width .3s ease;
+                            width: 17px;
+                        }
+                    }
+
+                    &:after {
+                        position: absolute;
+                        content: "";
+                        height: 3px;
+                        background-color: variable.$secondary-color;
+                        bottom: -10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 0;
+                        transition: width .3s ease;
+                    }
+
+                    &:hover {
+                        color: variable.$black;
+
+                        &:after {
+                            width: 17px;
+                        }
+                    }
+                }
+
+                &.user_nav {
+                    &:after {
+                        display: none;
+                    }
+                }
+
+                &.contact_nav {
+                    padding-left: 10px;
+
+                    a {
+                        color: variable.$white;
+                        background-color: variable.$black;
+                        padding: 12px 30px;
+
+                        &:hover {
+                            background-color: variable.$secondary-color;
+                        }
+
+                        &:after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1600px) {
+        .navbar {
+            .navbar-brand {
+                img {
+                    width: 180px;
+                }
+            }
+
+            .navbar-nav {
+                .nav-item {
+                    padding: 0 26px;
+
+                    a {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1400px) {
+        .navbar {
+            .navbar-nav {
+                .nav-item {
+                    padding: 0 20px;
+
+                    a {
+                        font-size: 17px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        .container {
+            padding: 0;
+        }
+
+        .navbar {
+            .navbar-brand {
+                img {
+                    width: 150px;
+                }
+            }
+
+            .navbar-nav {
+                .nav-item {
+                    padding: 0 16px;
+
+                    a {
+                        font-size: 16px;
+                    }
+
+                    &.user_nav {
+                        a {
+                            img {
+                                width: 20px;
+                            }
+                        }
+                    }
+
+                    &.contact_nav {
+                        padding-left: 0;
+
+                        a {
+                            padding: 10px 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 991.5px) {
+        top: 0;
+
+        .navbar {
+            padding: 15px;
+
+            .navbar-brand {
+                img {
+                    width: 203px;
+                }
+            }
+
+            .navbar-toggler {
+                padding: 0;
+                border: none;
+
+                &:focus {
+                    outline: none;
+                    box-shadow: none;
+                }
+
+                .navbar-toggler-icon {
+                    width: 31px;
+                    height: 24px;
+                    background: none;
+                    position: relative;
+
+                    span {
+                        height: 2px;
+                        width: 31px;
+                        background-color: variable.$black;
+                        display: block;
+                        position: absolute;
+                        transition: all .5s;
+
+                        &:nth-child(1) {
+                            top: 0;
+                        }
+
+                        &:nth-child(2),
+                        &:nth-child(3) {
+                            top: 11px;
+                        }
+
+                        &:nth-child(4) {
+                            top: 22px;
+                        }
+                    }
+
+                }
+
+                &.navbar-toggler[aria-expanded="true"] {
+                    .navbar-toggler-icon {
+                        span {
+
+                            &:nth-child(1),
+                            &:nth-child(4) {
+                                top: 11px;
+                                opacity: 0;
+                            }
+
+                            &:nth-child(2) {
+                                transform: rotate(-45deg);
+                            }
+
+                            &:nth-child(3) {
+                                transform: rotate(45deg);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .navbar-collapse {
+                padding: 15px;
+                height: calc(100% - 70px) !important;
+                position: fixed;
+                top: 69px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 999;
+                background-color: variable.$white;
+                overflow-y: auto;
+                align-items: center;
+                display: block;
+                transition: all 0.3s ease;
+                &:not(.show) {
+                    height: 0 !important;
+                    padding: 0;
+                }
+                .navbar-nav {
+                    .nav-item {
+                        padding: 0;
+                        margin-bottom: 15px;
+
+                        &:after {
+                            display: none;
+                        }
+
+                        a {
+                            padding: 12px 30px;
+                            font-size: 24px;
+
+                            &:after {
+                                display: none;
+                            }
+                        }
+
+                        &.user_nav {
+                            a {
+                                img {
+                                    width: 30px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 575.5px) {
+        .navbar {
+            .navbar-collapse {
+                padding-top: 30px;
+
+                .navbar-nav {
+                    .nav-item {
+                        margin-bottom: 10px;
+
+                        a {
+                            padding: 10px 30px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

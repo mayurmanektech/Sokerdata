@@ -1,0 +1,1 @@
+import{j as e}from"./index-CxP9Mt_d.js";const n=({children:t,direction:o})=>e.jsx("div",{className:o=="leftImage"?"contentFrame left-img":"contentFrame",children:t}),s=({children:t})=>e.jsx("div",{children:t});export{n as C,s as F};
